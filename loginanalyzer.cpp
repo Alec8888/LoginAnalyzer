@@ -19,6 +19,9 @@ void LoginAnalyzer::on_pushButton_clicked()
 {
     cout << "button was clicked" << endl;
 
-    QMessageBox::information(this, "Results", "UserName: " + ui->lineEdit->text() + '\n' + "Password: " + ui->lineEdit_2->text());
+    QString usrRes = "very cool";
+    QString pwrRes = "weak";
+
+    QMessageBox::information(this, "Results", "Your user name is:  " + usrRes + '\n' + "Your password is: " + pwrRes);
 }
 
