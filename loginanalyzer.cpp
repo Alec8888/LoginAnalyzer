@@ -17,7 +17,6 @@ LoginAnalyzer::~LoginAnalyzer()
 
 void LoginAnalyzer::on_pushButton_clicked()
 {
-    cout << "button was clicked" << endl;
 
     QString usrRes = "very cool";
     QString pwrRes = "weak";
