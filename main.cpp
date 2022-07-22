@@ -88,11 +88,11 @@ int main(int argc, char *argv[])
     LoadDataSets(usrName1, usrName2, pwrd1, pwrd2);
 
     cout << "Quick sort start......" << endl;
-    usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
+    //usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
     cout << "Quick sort end......" << endl;
 
     cout << "Merge sort start......" << endl;
-    usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
+    //usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
     cout << "Merge sort end......" << endl;
 
     cout << "sorting should be complete........" << endl;
