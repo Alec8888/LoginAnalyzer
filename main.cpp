@@ -1,4 +1,5 @@
 #include "loginanalyzer.h"
+#include "Sorts.h"
 
 #include <QApplication>
 #include <iostream>
@@ -37,7 +38,7 @@ void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, v
 
     // debug print
     cout << "Printing some user names ------------------------------------" << endl;
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 10; i++)
     {
         cout << uN.at(i) << endl;
     }
@@ -73,20 +74,29 @@ void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, v
 
     // debug print
     cout << "Printing some passwords ------------------------------------" << endl;
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 10; i++)
     {
         cout << pW.at(i) << endl;
     }
-
-
-
 }
 
 int main(int argc, char *argv[])
 {
 
     vector<string> usrName1, usrName2, pwrd1, pwrd2;
+    cout << "loading data...." << endl;
     LoadDataSets(usrName1, usrName2, pwrd1, pwrd2);
+
+    cout << "sorting data......" << endl;
+    //fruits = MergeSort(fruits, 0, fruits.size() - 1);
+    usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
+
+    // debug print
+    cout << "Sorted usrName1 -------------------------------------------------" << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        cout << usrName1.at(i) << endl;
+    }
 
 
     QApplication a(argc, argv);
