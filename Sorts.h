@@ -47,6 +47,7 @@ int Partition(vector<string>& Array, int Begin, int End);
 
 vector<string> MergeSort(vector<string> Array, int left, int right)
 {
+    //cout << "merge sort was called..." << endl;
     // while left index is smaller than right, keep dividing array
     if (left < right)
     {
@@ -119,6 +120,7 @@ vector<string> Merge(vector<string> Array, int left, int middle, int right)
 
 vector<string> QuickSort(vector<string>& Array, int Begin, int End)
 {
+    //cout << "quicksort was called..." << endl;
     // If left less than right, partition array, then quicksort recursively
 
     if (Begin < End)

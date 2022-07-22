@@ -87,9 +87,15 @@ int main(int argc, char *argv[])
     cout << "loading data...." << endl;
     LoadDataSets(usrName1, usrName2, pwrd1, pwrd2);
 
-    cout << "sorting data......" << endl;
-    //fruits = MergeSort(fruits, 0, fruits.size() - 1);
+    cout << "Quick sort start......" << endl;
+    usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
+    cout << "Quick sort end......" << endl;
+
+    cout << "Merge sort start......" << endl;
     usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
+    cout << "Merge sort end......" << endl;
+
+    cout << "sorting should be complete........" << endl;
 
     // debug print
     cout << "Sorted usrName1 -------------------------------------------------" << endl;
