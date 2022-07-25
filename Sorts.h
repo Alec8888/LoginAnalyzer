@@ -2,7 +2,7 @@
 #include <vector>
 #include <utility>
 #include <string>
-
+#define cutOff 40
 
 using namespace std;
 
