@@ -5,7 +5,10 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include <time.h>
+#include <chrono>
+using namespace std::chrono;
+
+typedef high_resolution_clock Clock;
 
 void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, vector<string>& pW2)
 {
@@ -89,17 +92,19 @@ int main(int argc, char *argv[])
     LoadDataSets(usrName1, usrName2, pwrd1, pwrd2);
 
 
-
-
     cout << "Quick sort start......" << endl;
     auto t1 = Clock::now();
     //usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
     auto t2 = Clock::now();
     cout << "Quick sort end......" << endl;
+    cout << "Quick sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
     cout << "Merge sort start......" << endl;
+    t1 = Clock::now();
     usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
+    t2 = Clock::now();
     cout << "Merge sort end......" << endl;
+    cout << "Merge sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
     cout << "sorting should be complete........" << endl;
 
