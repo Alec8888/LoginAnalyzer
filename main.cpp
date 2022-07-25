@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <time.h>
 
 void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, vector<string>& pW2)
 {
@@ -55,7 +56,7 @@ void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, v
 
         getline(inFile, firstRow);
 
-        for (int i = 0; i < 500000; i++)
+        for (int i = 0; i < 100; i++)
         {
             getline(inFile, line);
 
@@ -87,12 +88,17 @@ int main(int argc, char *argv[])
     cout << "loading data...." << endl;
     LoadDataSets(usrName1, usrName2, pwrd1, pwrd2);
 
+
+
+
     cout << "Quick sort start......" << endl;
+    auto t1 = Clock::now();
     //usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
+    auto t2 = Clock::now();
     cout << "Quick sort end......" << endl;
 
     cout << "Merge sort start......" << endl;
-    //usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
+    usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
     cout << "Merge sort end......" << endl;
 
     cout << "sorting should be complete........" << endl;
