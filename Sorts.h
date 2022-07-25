@@ -6,9 +6,11 @@
 
 using namespace std;
 
-vector<string> MergeSort(vector<string> Array, int left, int right);
-vector<string> Merge(vector<string> Array, int left, int middle, int right);
-vector<string> QuickSort(vector<string>& Array, int Begin, int End);
+vector <string>& Merge(vector<string>& Array, int left, int middle, int right);
+vector<string>& QuickSort(vector<string> &Array, int Begin, int End);
+vector<string>& TimSort(vector<string>& Array);
+vector<string>& MergeSort(vector<string>& Array, int left, int right);
+
 int Partition(vector<string>& Array, int Begin, int End);
 
 //int main()
@@ -45,7 +47,7 @@ int Partition(vector<string>& Array, int Begin, int End);
 //    return 0;
 //}
 
-vector<string> MergeSort(vector<string> Array, int left, int right)
+vector<string>& MergeSort(vector<string>& Array, int left, int right)
 {
     //cout << "merge sort was called..." << endl;
     // while left index is smaller than right, keep dividing array
@@ -63,7 +65,7 @@ vector<string> MergeSort(vector<string> Array, int left, int right)
 
     return Array;
 }
-vector<string> Merge(vector<string> Array, int left, int middle, int right)
+vector<string>& Merge(vector<string>& Array, int left, int middle, int right)
 {
     int counter = left, lHalf = middle - left + 1, rHalf = right - middle, x = 0, y = 0;
     vector<string> leftHalf, rightHalf;
@@ -118,7 +120,7 @@ vector<string> Merge(vector<string> Array, int left, int middle, int right)
     return Array;
 }
 
-vector<string> QuickSort(vector<string>& Array, int Begin, int End)
+vector<string>& QuickSort(vector<string>& Array, int Begin, int End)
 {
     //cout << "quicksort was called..." << endl;
     // If left less than right, partition array, then quicksort recursively
@@ -130,6 +132,39 @@ vector<string> QuickSort(vector<string>& Array, int Begin, int End)
         Array = QuickSort(Array, Pivot + 1, End);
     }
 
+    return Array;
+}
+
+vector<string>& Sorts::TimSort(vector<string>& Array)
+{
+    int mycount = 0;
+    for (int j = 0; j < Array.size(); j++)
+    {
+        if (mycount < cutOff)
+        {
+            for (int i = j - mycount; i <= j; i++)
+            {
+                int key = i;
+                string value = Array.at(i);
+                while (key > 0 && Array.at(key - 1).compare(value) > 0)
+                {
+                    Array.at(key) = Array.at(key - 1);
+                    key--;
+                }
+                Array.at(key) = value;
+            }
+            mycount = 0;
+        }
+
+        else
+        {
+            int left = j - cutOff;
+            int mid = (j - cutOff) / 2 + (j /2);
+            int right = j;
+            Array = Merge(Array, left, mid, right);
+        }
+        mycount++;
+    }
     return Array;
 }
 
