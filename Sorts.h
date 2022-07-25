@@ -135,7 +135,7 @@ vector<string>& QuickSort(vector<string>& Array, int Begin, int End)
     return Array;
 }
 
-vector<string>& Sorts::TimSort(vector<string>& Array)
+vector<string>& TimSort(vector<string>& Array)
 {
     int mycount = 0;
     for (int j = 0; j < Array.size(); j++)
