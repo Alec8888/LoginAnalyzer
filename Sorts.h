@@ -2,7 +2,7 @@
 #include <vector>
 #include <utility>
 #include <string>
-#define cutOff 40
+#define cutOff 80
 
 using namespace std;
 
@@ -137,43 +137,56 @@ vector<string>& QuickSort(vector<string>& Array, int Begin, int End)
     return Array;
 }
 
-// Tim Sort learned from Geeks for Geeks
+// Learned from Geeks for Geeks
+// cutOff is 80 because tim sort works better when array size is divisible by this value
 vector<string>& TimSort(vector<string>& Array)
 {
-    int mycount = 0;
+    int n = Array.size();
+
+    // Insertion sort small pieces of array
     for (int j = 0; j < Array.size(); j+= cutOff)
     {
-        for (int i = j + 1; i < j + cutOff-1; i++)
+        int x;
+        if (n > j + cutOff)
+            x = j + cutOff;
+        else
+            x = n;
+        for (int i = j + 1; i < x; i++)
         {
             int key = i;
-            string& value = Array.at(i);
-            while (key > 0 && Array.at(key - 1).compare(value) > 0)
+            string value = Array.at(i);
+            while (key > j && Array.at(key - 1).compare(value) > 0)
             {
                 Array.at(key) = Array.at(key - 1);
                 key--;
             }
+
             Array.at(key) = value;
         }
     }
 
     int right;
+
+    // merge small portions of array
+
     for (int f = cutOff; f < Array.size(); f = 2*f)
     {
-        for (int f = cutOff; f < Array.size(); f = 2*f)
+        // merges each portion with portion 2*f values away
+        for (int left = 0; left < Array.size(); left += 2*f)
         {
-            for (int l = 0; l < Array.size(); l += 2*f)
-            {
-                int comp = l + 2 * f;
 
-                if (Array.size() - 1 > comp - 1)
-                    right = comp - 1;
+            // comp is value of right half of array
+            int comp = left + 2 * f;
 
-                else
-                    right = Array.size() - 1;
+            if (Array.size() - 1 > comp - 1)
+                right = comp - 1;
 
-                if(l + f - 1 < right)
-                    Array = Merge(Array, l, l + f - 1, right);
-            }
+            else
+                right = Array.size() - 1;
+
+            // ensures this array needs to be merged
+            if((left + f - 1) < right)
+                Array = Merge(Array, left, left + f - 1, right);
         }
     }
 
