@@ -41,16 +41,14 @@ void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, v
     }
 
     // debug print
-    cout << "Printing some user names ------------------------------------" << endl;
-    for (int i = 0; i < 10; i++)
-    {
-        cout << uN.at(i) << endl;
-    }
+//    cout << "Printing some user names ------------------------------------" << endl;
+//    for (int i = 0; i < 50; i++)
+//    {
+//        cout << uN.at(i) << endl;
+//    }
 
 
     // Load Passwords ---------------------------------------------------//
-    //fstream inFile;
-
     inFile.open("C:/Users/8888a/OneDrive/Documents/LoginAnalyzer/passwords.csv");
     //vector<string> userNames;
     if (inFile.is_open())
@@ -59,7 +57,7 @@ void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, v
 
         getline(inFile, firstRow);
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 500000; i++)
         {
             getline(inFile, line);
 
@@ -77,11 +75,11 @@ void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, v
     }
 
     // debug print
-    cout << "Printing some passwords ------------------------------------" << endl;
-    for (int i = 0; i < 10; i++)
-    {
-        cout << pW.at(i) << endl;
-    }
+//    cout << "Printing some passwords ------------------------------------" << endl;
+//    for (int i = 0; i < 10; i++)
+//    {
+//        cout << pW.at(i) << endl;
+//    }
 }
 
 int main(int argc, char *argv[])
@@ -94,25 +92,33 @@ int main(int argc, char *argv[])
 
     cout << "Quick sort start......" << endl;
     auto t1 = Clock::now();
-    //usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
+    usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
     auto t2 = Clock::now();
     cout << "Quick sort end......" << endl;
     cout << "Quick sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
     cout << "Merge sort start......" << endl;
     t1 = Clock::now();
-    usrName1 = MergeSort(usrName1, 0, usrName1.size() - 1);
+    usrName1 = MergeSort(usrName2, 0, usrName2.size() - 1);
+    //sort(usrName1.begin(), usrName1.end());
     t2 = Clock::now();
     cout << "Merge sort end......" << endl;
     cout << "Merge sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
     cout << "sorting should be complete........" << endl;
 
-    // debug print
-    cout << "Sorted usrName1 -------------------------------------------------" << endl;
+    // debug print 1
+    cout << "Sorted usrNames1: " << endl;
     for (int i = 0; i < 10; i++)
     {
         cout << usrName1.at(i) << endl;
+    }
+
+    // debug print 1
+    cout << "Sorted usrNames2: " << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        cout << usrName2.at(i) << endl;
     }
 
 
