@@ -16,6 +16,7 @@ class LoginAnalyzer : public QWidget
 public:
     LoginAnalyzer(QWidget *parent = nullptr);
     ~LoginAnalyzer();
+    int RankName(string userName);
 
 private slots:
     void on_pushButton_clicked();

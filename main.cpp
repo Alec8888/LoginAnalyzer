@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
         cout << usrName1.at(i) << endl;
     }
 
-    // debug print 1
+    // debug print 2
     cout << "Sorted usrNames2: " << endl;
     for (int i = 0; i < 10; i++)
     {
