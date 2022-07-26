@@ -92,20 +92,27 @@ int main(int argc, char *argv[])
 
     cout << "Quick sort start......" << endl;
     auto t1 = Clock::now();
-    usrName2 = QuickSort(usrName1, 0, usrName1.size() - 1);
+    usrName1 = QuickSort(usrName1, 0, usrName1.size() - 1);
     auto t2 = Clock::now();
     cout << "Quick sort end......" << endl;
     cout << "Quick sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
-    cout << "Merge sort start......" << endl;
-    t1 = Clock::now();
-    usrName1 = MergeSort(usrName2, 0, usrName2.size() - 1);
-    //sort(usrName1.begin(), usrName1.end());
-    t2 = Clock::now();
-    cout << "Merge sort end......" << endl;
-    cout << "Merge sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
+//    cout << "Merge sort start......" << endl;
+//    t1 = Clock::now();
+//    usrName1 = MergeSort(usrName2, 0, usrName2.size() - 1);
+//    //sort(usrName1.begin(), usrName1.end());
+//    t2 = Clock::now();
+//    cout << "Merge sort end......" << endl;
+//    cout << "Merge sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
-    cout << "sorting should be complete........" << endl;
+    cout << "Tim sort start......" << endl;
+    t1 = Clock::now();
+    usrName2 = TimSort(usrName2);
+    t2 = Clock::now();
+    cout << "Tim sort end......" << endl;
+    cout << "Tim sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
+
+    cout << "sorting complete........" << endl;
 
     // debug print 1
     cout << "Sorted usrNames1: " << endl;
