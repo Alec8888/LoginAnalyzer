@@ -65,6 +65,7 @@ vector<string>& MergeSort(vector<string>& Array, int left, int right)
 
     return Array;
 }
+// MergeSort learned from Professor AmanPreet Kapoor Sorting Module
 vector<string>& Merge(vector<string>& Array, int left, int middle, int right)
 {
     int counter = left, lHalf = middle - left + 1, rHalf = right - middle, x = 0, y = 0;
@@ -120,6 +121,7 @@ vector<string>& Merge(vector<string>& Array, int left, int middle, int right)
     return Array;
 }
 
+// QuickSort learned from Professor Amanpreet Kapoor sorting module
 vector<string>& QuickSort(vector<string>& Array, int Begin, int End)
 {
     //cout << "quicksort was called..." << endl;
@@ -135,36 +137,46 @@ vector<string>& QuickSort(vector<string>& Array, int Begin, int End)
     return Array;
 }
 
+// Tim Sort learned from Geeks for Geeks
 vector<string>& TimSort(vector<string>& Array)
 {
     int mycount = 0;
-    for (int j = 0; j < Array.size(); j++)
+    for (int j = 0; j < Array.size(); j+= cutOff)
     {
-        if (mycount < cutOff)
+        for (int i = j + 1; i < j + cutOff-1; i++)
         {
-            for (int i = j - mycount; i <= j; i++)
+            int key = i;
+            string& value = Array.at(i);
+            while (key > 0 && Array.at(key - 1).compare(value) > 0)
             {
-                int key = i;
-                string value = Array.at(i);
-                while (key > 0 && Array.at(key - 1).compare(value) > 0)
-                {
-                    Array.at(key) = Array.at(key - 1);
-                    key--;
-                }
-                Array.at(key) = value;
+                Array.at(key) = Array.at(key - 1);
+                key--;
             }
-            mycount = 0;
+            Array.at(key) = value;
         }
-
-        else
-        {
-            int left = j - cutOff;
-            int mid = (j - cutOff) / 2 + (j /2);
-            int right = j;
-            Array = Merge(Array, left, mid, right);
-        }
-        mycount++;
     }
+
+    int right;
+    for (int f = cutOff; f < Array.size(); f = 2*f)
+    {
+        for (int f = cutOff; f < Array.size(); f = 2*f)
+        {
+            for (int l = 0; l < Array.size(); l += 2*f)
+            {
+                int comp = l + 2 * f;
+
+                if (Array.size() - 1 > comp - 1)
+                    right = comp - 1;
+
+                else
+                    right = Array.size() - 1;
+
+                if(l + f - 1 < right)
+                    Array = Merge(Array, l, l + f - 1, right);
+            }
+        }
+    }
+
     return Array;
 }
 
