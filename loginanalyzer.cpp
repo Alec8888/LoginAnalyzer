@@ -49,30 +49,26 @@ void LoginAnalyzer::on_pushButton_clicked()
     cout << "sorting complete..." << endl;
     cout << "Start ranking..." << endl;
 
+    // Rank userID and password ================================== //
 
-    QString usrRes = "unranked"; // debug
-    QString pwrRes = "unranked"; // debug
-
+    // input from user
     string userNameInput = ui->lineEdit->text().toStdString();
     string passwordInput = ui->lineEdit_2->text().toStdString();
 
-//    // need to incorporate this into the ranking and have rankUser return a string
-//    if (RankName(userNameInput) == 10)
-//    {
-//        usrRes = "very cool";
-//    }
-//    else
-//    {
-//        usrRes = "not cool";
-//    }
+    // strings that are displayed as results
+    QString usrRes = "unranked";
+    QString pwrRes = "unranked";
 
-    //userID ranking
+    // userID ranking
     usrRes = QString::fromStdString(RankName(userNameInput, usrName1));
 
-    //password ranking
+    // password ranking
     pwrRes = QString::fromStdString(RankPassword(passwordInput, pwrd1));
 
     cout << "Ranking complete..." << endl;
+
+    // display results ================================================ //
+    cout << "Displaying results..." << endl;
     QMessageBox::information(this, "Results", "Your user name is:  " + usrRes + '\n' + "Your password is: " + pwrRes);
 }
 
