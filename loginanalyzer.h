@@ -16,7 +16,10 @@ class LoginAnalyzer : public QWidget
 public:
     LoginAnalyzer(QWidget *parent = nullptr);
     ~LoginAnalyzer();
-    int RankName(string userName);
+
+    string RankName(string userName, vector<string>& sortedNames);
+    string RankPassword(string password, vector<string>& sortedPasswords);
+    void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, vector<string>& pW2);
 
 private slots:
     void on_pushButton_clicked();
