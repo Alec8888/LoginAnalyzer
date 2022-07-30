@@ -10,42 +10,7 @@ vector <string>& Merge(vector<string>& Array, int left, int middle, int right);
 vector<string>& QuickSort(vector<string> &Array, int Begin, int End);
 vector<string>& TimSort(vector<string>& Array);
 vector<string>& MergeSort(vector<string>& Array, int left, int right);
-
 int Partition(vector<string>& Array, int Begin, int End);
-
-//int main()
-
-//{
-//    vector<string> fruits = {"banana", "orange", "lemon", "coconut", "mango", "apple", "pear", "grape", "cherry"};
-//    vector<string> colors = {"pink", "black", "orange", "green", "yellow", "white", "purple", "red", "blue"};
-//    cout << "\n----------------------------\nUnsorted Fruits: ";
-//    for (int i = 0; i < fruits.size(); i++)
-//    {
-//        cout << fruits.at(i) << " ";
-//    }
-
-//    fruits = MergeSort(fruits, 0, fruits.size() - 1);
-//    cout << "\n\n----------------------------\nMerge Sorted Fruits: ";
-//    for (int i = 0; i < fruits.size(); i++)
-//    {
-//        cout << fruits.at(i) << " ";
-//    }
-
-//    cout << "\n\n\n----------------------------\nUnsorted Colors: ";
-//    for (int i = 0; i < colors.size(); i++)
-//    {
-//        cout << colors.at(i) << " ";
-//    }
-
-//    colors = QuickSort(colors, 0, colors.size() - 1);
-//    cout << "\n\n----------------------------\nQuick Sorted Colors: ";
-//    for (int i = 0; i < colors.size(); i++)
-//    {
-//        cout << colors.at(i) << " ";
-//    }
-//    cout << endl << endl;
-//    return 0;
-//}
 
 vector<string>& MergeSort(vector<string>& Array, int left, int right)
 {
@@ -141,16 +106,16 @@ vector<string>& QuickSort(vector<string>& Array, int Begin, int End)
 // cutOff is 80 because tim sort works better when array size is divisible by this value
 vector<string>& TimSort(vector<string>& Array)
 {
-    int n = Array.size();
-
     // Insertion sort small pieces of array
     for (int j = 0; j < Array.size(); j+= cutOff)
     {
         int x;
-        if (n > j + cutOff)
+
+        if (Array.size() > j + cutOff)
             x = j + cutOff;
         else
-            x = n;
+            x = Array.size();
+
         for (int i = j + 1; i < x; i++)
         {
             int key = i;
@@ -168,15 +133,15 @@ vector<string>& TimSort(vector<string>& Array)
     int right;
 
     // merge small portions of array
-
-    for (int f = cutOff; f < Array.size(); f = 2*f)
+    int CutOff = cutOff;
+    while (CutOff < Array.size())
     {
         // merges each portion with portion 2*f values away
-        for (int left = 0; left < Array.size(); left += 2*f)
+        for (int left = 0; left < Array.size(); left += 2 * CutOff)
         {
 
             // comp is value of right half of array
-            int comp = left + 2 * f;
+            int comp = left + 2 * CutOff;
 
             if (Array.size() - 1 > comp - 1)
                 right = comp - 1;
@@ -185,9 +150,10 @@ vector<string>& TimSort(vector<string>& Array)
                 right = Array.size() - 1;
 
             // ensures this array needs to be merged
-            if((left + f - 1) < right)
-                Array = Merge(Array, left, left + f - 1, right);
+            if((left + CutOff - 1) < right)
+                Array = Merge(Array, left, left + CutOff - 1, right);
         }
+        CutOff = 2 * CutOff;
     }
 
     return Array;
