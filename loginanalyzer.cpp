@@ -128,6 +128,17 @@ string LoginAnalyzer::RankName(string userName, vector<string>& sortedNames)
 {
     int rankRes = 10; // starts at max rank
 
+    // check substr of sorted name for username
+    vector<string> firstFour;
+    for (string s : sortedNames)
+    {
+        firstFour.push_back(s.substr(0,5));
+    }
+    if (binary_search(firstFour.begin(), firstFour.end(), userName))
+    {
+        rankRes--;
+    }
+
     // check length
     if (userName.length() > 10)
     {
@@ -138,6 +149,21 @@ string LoginAnalyzer::RankName(string userName, vector<string>& sortedNames)
     if (binary_search(sortedNames.begin(), sortedNames.end(), userName))
     {
         rankRes -= 5;
+    }
+
+    // check for substring of user name in username data
+    if (binary_search(sortedNames.begin(), sortedNames.end(), userName.substr(0,3)))
+    {
+        rankRes -= 2;
+    }
+
+    // check for numbers
+    for (char c : userName)
+    {
+        if (c >= '0' && c <= '9' )
+        {
+            rankRes--;
+        }
     }
 
     return RankValtoText(rankRes);
