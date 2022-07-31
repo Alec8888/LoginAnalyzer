@@ -78,47 +78,47 @@ string LoginAnalyzer::RankValtoText(int rankVal)
 
     if (rankVal == 10)
     {
-        textResult = "cool10";
+        textResult = "hella Cool";
     }
     else if (rankVal == 9)
     {
-        textResult = "cool9";
+        textResult = "really cool";
     }
     else if (rankVal == 8)
     {
-        textResult = "cool8";
+        textResult = "cool";
     }
     else if (rankVal == 7)
     {
-        textResult = "cool7";
+        textResult = "kinda cool";
     }
     else if (rankVal == 6)
     {
-        textResult = "cool6";
+        textResult = "pretty cool";
     }
     else if (rankVal == 5)
     {
-        textResult = "cool5";
+        textResult = "adjacent to cool";
     }
     else if (rankVal == 4)
     {
-        textResult = "cool4";
+        textResult = "almost cool";
     }
     else if (rankVal == 3)
     {
-        textResult = "cool3";
+        textResult = "distance cousin of cool";
     }
     else if (rankVal == 2)
     {
-        textResult = "cool2";
+        textResult = "improving, but not cool";
     }
     else if (rankVal == 1)
     {
-        textResult = "cool1";
+        textResult = "not cool";
     }
     else if (rankVal < 1)
     {
-        textResult = "totally no cool";
+        textResult = "totally not cool";
     }
 
     return textResult;
@@ -146,8 +146,6 @@ string LoginAnalyzer::RankName(string userName, vector<string>& sortedNames)
 string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswords) {
 
     int passwordRank = 0;
-    bool wasFound = false;
-    bool isLong = false;
     bool hasLower = false;
     bool hasUpper = false;
     bool hasNumber = false;
@@ -155,15 +153,11 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
 
     // check if password found in breached data
     if (binary_search(sortedPasswords.begin(), sortedPasswords.end(), password)) {
-        wasFound = true;
-    }
-    else {
-        passwordRank++;
+        passwordRank--;
     }
 
     // check if password is at least 8 characters
     if (password.size() >= 8) {
-        isLong = true;
         passwordRank++;
     }
 
@@ -208,11 +202,17 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
         }
     }
 
-    if (passwordRank == 6) {
+    if (passwordRank == 5) {
+        return "very strong";
+    }
+    else if (passwordRank == 4){
         return "strong";
     }
-    else {
+    else if (passwordRank == 3){
         return "weak";
+    }
+    else {
+        return "very weak";
     }
 }
 
