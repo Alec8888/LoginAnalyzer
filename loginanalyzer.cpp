@@ -72,7 +72,7 @@ void LoginAnalyzer::on_pushButton_clicked()
     QMessageBox::information(this, "Results", "Your user name is:  " + usrRes + '\n' + "Your password is: " + pwrRes);
 }
 
-string RankValtoText(int rankVal)
+string LoginAnalyzer::RankValtoText(int rankVal)
 {
     string textResult;
 

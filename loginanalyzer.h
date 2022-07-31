@@ -20,6 +20,7 @@ public:
     string RankName(string userName, vector<string>& sortedNames);
     string RankPassword(string password, vector<string>& sortedPasswords);
     void LoadDataSets(vector<string>& uN, vector<string>& uN2, vector<string>& pW, vector<string>& pW2);
+    string RankValtoText(int rankVal);
 
 private slots:
     void on_pushButton_clicked();
