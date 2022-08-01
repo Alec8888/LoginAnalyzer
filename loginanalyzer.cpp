@@ -148,6 +148,12 @@ string LoginAnalyzer::RankName(string userName, vector<string>& sortedNames)
         rankRes--;
     }
 
+    // check length
+    if (length < 4)
+    {
+        rankRes -= 2;
+    }
+
     // check if unique
     if (binary_search(sortedNames.begin(), sortedNames.end(), userName))
     {
@@ -235,6 +241,11 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
         if (binary_search(sortedPasswords.begin(), sortedPasswords.end(), password)) {
             passwordRank = 0;
         }
+    }
+
+    if (hasLower && hasUpper && hasNumber && hasSpecialChar && (password.length() > 10))
+    {
+        passwordRank = 5;
     }
 
     if (passwordRank >= 5) {
