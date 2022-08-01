@@ -32,6 +32,7 @@ void LoginAnalyzer::on_pushButton_clicked()
     cout << "loading data..." << endl;
     LoadDataSets(usrName1, usrName2, pwrd1, pwrd2);
 
+        // quick sort ========================================== //
     cout << "Quick sort start..." << endl;
     auto t1 = Clock::now();
     usrName1 = QuickSort(usrName1, 0, usrName1.size() - 1);
@@ -39,6 +40,7 @@ void LoginAnalyzer::on_pushButton_clicked()
     cout << "Quick sort end..." << endl;
     cout << "Quick sort duration: " << duration_cast<nanoseconds>(t2 - t1).count() << endl;
 
+        // tim sort =========================================== //
     cout << "Tim sort start..." << endl;
     t1 = Clock::now();
     usrName2 = TimSort(usrName2);
@@ -140,7 +142,8 @@ string LoginAnalyzer::RankName(string userName, vector<string>& sortedNames)
     }
 
     // check length
-    if (userName.length() > 10)
+    int length = userName.length();
+    if (length > 10 || length < 3)
     {
         rankRes--;
     }
@@ -176,11 +179,6 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
     bool hasUpper = false;
     bool hasNumber = false;
     bool hasSpecialChar = false;
-
-    // check if password found in breached data
-    if (binary_search(sortedPasswords.begin(), sortedPasswords.end(), password)) {
-        passwordRank--;
-    }
 
     // check if password is at least 8 characters
     if (password.size() >= 8) {
@@ -225,6 +223,11 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
                 hasSpecialChar = true;
                 passwordRank++;
             }
+        }
+
+        // check if password found in breached data
+        if (binary_search(sortedPasswords.begin(), sortedPasswords.end(), password)) {
+            passwordRank = 0;
         }
     }
 
