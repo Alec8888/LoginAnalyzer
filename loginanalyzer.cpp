@@ -132,7 +132,7 @@ string LoginAnalyzer::RankName(string userName, vector<string>& sortedNames)
 
     // check substr of sorted name for username
     vector<string> firstFour;
-    for (string s : sortedNames)
+    for (std::string s : sortedNames)
     {
         firstFour.push_back(s.substr(0,5));
     }
@@ -185,13 +185,13 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
         passwordRank++;
     }
 
-    for (int i = 0; i < password.size(); i++) {
+    for (unsigned int i = 0; i < password.size(); i++) {
         // check if password has lowercase letter
         if (password.at(i) >= 'a' && password.at(i) <= 'z') {
             if (hasLower == false) {
                 // lowercase letter found
                 hasLower = true;
-                passwordRank++;
+                //passwordRank++;
             }
         }
 
@@ -200,8 +200,14 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
             if (hasUpper == false) {
                 // uppercase letter found
                 hasUpper = true;
-                passwordRank++;
+                //passwordRank++;
             }
+        }
+
+        // has upper and lower
+        if (hasUpper && hasLower)
+        {
+            passwordRank += 2;
         }
 
         // check if password has number
@@ -231,7 +237,7 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
         }
     }
 
-    if (passwordRank == 5) {
+    if (passwordRank >= 5) {
         return "very strong";
     }
     else if (passwordRank == 4){
@@ -240,9 +246,12 @@ string LoginAnalyzer::RankPassword(string password, vector<string>& sortedPasswo
     else if (passwordRank == 3){
         return "weak";
     }
-    else {
-        return "very weak";
+    else if (passwordRank == 2) {
+        return "pretty weak";
     }
+    else {
+            return "very weak";
+        }
 }
 
 
